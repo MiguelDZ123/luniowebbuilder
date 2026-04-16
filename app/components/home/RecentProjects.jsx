@@ -1,22 +1,41 @@
 "use client"
 
-import React from "react";
-import { Link } from "react-router-dom";
+
+import { useState, useEffect } from 'react'
+import Link from 'next/link';
 import isLoading from "react-loading-skeleton";
-import { supabase } from "../../../utils/supabase";
+import { supabase, Project } from "../../../utils/supabase";
 import { formatDistanceToNow } from "date-fns";
 import { ArrowUpRight, FileText } from "lucide-react";
 
 export default function RecentProjects() {
 
-  //Show all projects, ordered by updated date, limit 9
-  const { data: projects = [], isLoading } = supabase
-    .from("projects")
-    .select("*")
-    .order("updated_date", { ascending: false })
-    .limit(9);
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  if (isLoading || projects.length === 0) return null;
+  useEffect(() => {
+      fetchItems();
+    }, []);
+  
+    const fetchItems = async () => {
+      setLoading(true);
+      try {
+        let query = supabase
+          .from('projects')
+          .select('*')
+          .order('created_date', { ascending: false });
+  
+        const { data, error } = await query;
+  
+        if (error) throw error;
+        setProjects(data || []);
+      } catch (error) {
+        console.error('Error fetching items:', error);
+        setProjects([]);
+      } finally {
+        setLoading(false);
+      }
+    };
 
   return (
     <div className="w-full max-w-5xl mx-auto mt-20 px-6">
@@ -30,7 +49,7 @@ export default function RecentProjects() {
         {projects.map((p) => (
           <Link
             key={p.id}
-            to={`/builder?id=${p.id}`}
+            href={`/builder?id=${p.id}`}
             className="group relative rounded-2xl border border-border bg-card p-5 hover:border-foreground/30 hover:shadow-sm transition-all"
           >
             <div className="flex items-start justify-between gap-3">

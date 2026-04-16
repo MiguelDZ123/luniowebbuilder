@@ -1,5 +1,5 @@
 import React from "react";
-import { Sparkles } from "lucide-react";
+import { Moon, Sparkles } from "lucide-react";
 import PromptInput from "./components/home/PromptInput";
 import RecentProjects from "./components/home/RecentProjects";
 
@@ -16,9 +16,9 @@ export default function Home() {
       <header className="relative z-10 px-6 py-5 flex items-center justify-between max-w-7xl mx-auto">
         <div className="flex items-center gap-2">
           <div className="h-7 w-7 rounded-lg bg-primary text-primary-foreground flex items-center justify-center">
-            <Sparkles className="h-3.5 w-3.5" />
+            <Moon className="h-3.5 w-3.5" />
           </div>
-          <span className="font-serif text-lg">Atelier</span>
+          <span className="font-serif text-lg">LUNIO AI Builder</span>
         </div>
         <nav className="text-sm text-muted-foreground hidden sm:flex items-center gap-6">
           <span className="hover:text-foreground transition-colors cursor-default">Gallery</span>
@@ -30,17 +30,11 @@ export default function Home() {
       {/* Hero */}
       <main className="relative z-10 px-6 pt-20 pb-24">
         <div className="max-w-3xl mx-auto text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-medium mb-6">
-            <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
-            AI Website Builder
-          </div>
           <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl tracking-tight text-foreground leading-[1.05]">
-            Craft a website,
-            <br />
-            <span className="italic text-accent">in a single breath.</span>
+            Start Building Today with Just a Prompt
           </h1>
           <p className="mt-6 text-base md:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
-            Describe what you need. Our AI designs, writes, and builds a fully responsive site in seconds — then refines it with you in chat.
+            Describe your idea and let the power of AI make it a reality. Just type a prompt in the textbox below and just let the machine do the rest.
           </p>
         </div>
 
