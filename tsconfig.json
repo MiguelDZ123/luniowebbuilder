@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-  ],
+, "app/components/home/PromptInput.jsx", "app/components/home/RecentProjects.tsx", "app/components/builder/PreviewFrame.jsx", "app/components/builder/MessageBubble.jsx", "app/components/builder/ChatSidebar.jsx", "app/builder/page.jsx"  ],
   "exclude": ["node_modules"]
 }

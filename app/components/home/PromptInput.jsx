@@ -1,0 +1,97 @@
+"use client"
+
+import React, { useState } from "react";
+import { useRouter } from 'next/navigation'
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import { ArrowUp, Loader2 } from "lucide-react";
+import { generateTitle } from "../../lib/generateSite";
+import { supabase } from "../../../utils/supabase";
+
+const SUGGESTIONS = [
+  "A minimalist portfolio for a product designer",
+  "Landing page for an AI meditation app",
+  "Restaurant site for a modern Japanese izakaya",
+  "Agency site for a boutique branding studio",
+];
+
+export default function PromptInput() {
+  const [prompt, setPrompt] = useState("");
+  const [isStarting, setIsStarting] = useState(false);
+  const router = useRouter();
+
+  const startProject = async (text) => {
+    const finalPrompt = (text || prompt).trim();
+    if (!finalPrompt || isStarting) return;
+    setIsStarting(true);
+    const title = await generateTitle(finalPrompt).catch(() => "Untitled Site");
+    const { data: project } = await supabase.from("projects").insert({
+      title,
+      initial_prompt: finalPrompt,
+      html: "",
+      messages: [
+        {
+          role: "user",
+          content: finalPrompt,
+          timestamp: new Date().toISOString(),
+        },
+      ],
+    }).select().single();
+    router.push(`/builder?id=${project.id}&autogen=1`);
+  }
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      startProject();
+    }
+  };
+
+  return (
+    <div className="w-full max-w-2xl mx-auto">
+      <div className="relative rounded-2xl border border-border bg-card shadow-sm hover:shadow-md focus-within:border-foreground/40 focus-within:shadow-md transition-all">
+        <Textarea
+          value={prompt}
+          onChange={(e) => setPrompt(e.target.value)}
+          onKeyDown={handleKeyDown}
+          placeholder="Describe the website you want to build…"
+          rows={3}
+          disabled={isStarting}
+          className="resize-none border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 px-5 pt-5 pb-14 text-base min-h-[140px]"
+        />
+        <div className="absolute bottom-3 right-3">
+          <Button
+            onClick={() => startProject()}
+            disabled={!prompt.trim() || isStarting}
+            className="h-10 rounded-xl gap-2 px-4"
+          >
+            {isStarting ? (
+              <>
+                <Loader2 className="h-4 w-4 animate-spin" />
+                Creating
+              </>
+            ) : (
+              <>
+                Generate
+                <ArrowUp className="h-4 w-4" />
+              </>
+            )}
+          </Button>
+        </div>
+      </div>
+
+      <div className="flex flex-wrap gap-2 mt-5 justify-center">
+        {SUGGESTIONS.map((s) => (
+          <button
+            key={s}
+            onClick={() => setPrompt(s)}
+            disabled={isStarting}
+            className="text-xs text-muted-foreground hover:text-foreground bg-card border border-border rounded-full px-3.5 py-1.5 hover:border-foreground/30 transition-all"
+          >
+            {s}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
