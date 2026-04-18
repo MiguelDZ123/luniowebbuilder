@@ -40,7 +40,7 @@ export default function RecentProjects() {
   return (
     <div className="w-full max-w-5xl mx-auto mt-20 px-6">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="font-serif text-2xl text-foreground">Recent projects</h2>
+        <h2 className="font-serif text-2xl text-foreground">Community Projects</h2>
         <span className="text-xs text-muted-foreground uppercase tracking-wider">
           {projects.length} {projects.length === 1 ? "site" : "sites"}
         </span>

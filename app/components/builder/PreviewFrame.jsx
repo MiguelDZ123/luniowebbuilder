@@ -1,8 +1,10 @@
 import React, { useState, useMemo } from "react";
-import { Monitor, Tablet, Smartphone, Code2, Eye, ExternalLink, Copy, Check, Loader2 } from "lucide-react";
+import { Monitor, Tablet, Smartphone, Code2, Eye, ExternalLink, Copy, Check, Loader2, Circle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
+import Editor from "@monaco-editor/react";
+import { supabase } from "../../../utils/supabase";
 
 const DEVICES = {
   desktop: { icon: Monitor, width: "100%", label: "Desktop" },
@@ -14,6 +16,8 @@ export default function PreviewFrame({ html, isGenerating }) {
   const [device, setDevice] = useState("desktop");
   const [view, setView] = useState("preview");
   const [copied, setCopied] = useState(false);
+  const [editedHtml, setEditedHtml] = useState(html);
+  const projectId = new URLSearchParams(window.location.search).get("id");
 
   const iframeSrc = useMemo(() => {
     if (!html) return "";
@@ -28,9 +32,32 @@ export default function PreviewFrame({ html, isGenerating }) {
   };
 
   const handleOpen = () => {
-    const blob = new Blob([html], { type: "text/html" });
+    const blob = new Blob([editedHtml], { type: "text/html" });
     const url = URL.createObjectURL(blob);
     window.open(url, "_blank");
+  };
+
+  const Edited = (value) => {
+    setEditedHtml(value);
+  };
+
+  // Implement the auto-save functionality with a debounce
+  React.useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (editedHtml !== html) {
+        save();
+      }
+    }, 2000); // Save after 2 seconds of inactivity
+
+    return () => clearTimeout(timeout);
+  }, [editedHtml]);
+
+
+  const save = async () => {
+    //implement save changes from editor to database
+    // Example implementation (replace with actual database save logic):
+    await supabase.from("projects").update({ html: editedHtml }).eq("id", projectId);
+    toast.success("Changes saved successfully");
   };
 
   return (
@@ -117,10 +144,10 @@ export default function PreviewFrame({ html, isGenerating }) {
               {html ? (
                 <iframe
                   key={html.length}
-                  srcDoc={html}
+                  srcDoc={editedHtml}
                   title="Website preview"
                   className="w-full h-full border-0"
-                  sandbox="allow-scripts allow-same-origin allow-forms"
+                  sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-downloads allow-sandbox allow-images allow-links allow-images-srcset"
                 />
               ) : (
                 <EmptyState isGenerating={isGenerating} />
@@ -130,7 +157,7 @@ export default function PreviewFrame({ html, isGenerating }) {
         ) : (
           <div className="h-full overflow-auto">
             <pre className="font-mono text-xs leading-relaxed p-6 text-foreground/80 whitespace-pre-wrap break-all">
-              {html || "// No code yet"}
+              <Editor value={editedHtml || "// No code yet"} onChange={Edited} className="h-full" height="90vh" />
             </pre>
           </div>
         )}

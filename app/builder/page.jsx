@@ -138,7 +138,7 @@ export default function Builder() {
   }
 
   return (
-    <div className="fixed inset-0 flex bg-background overflow-hidden">
+    <div className="fixed font-mono inset-0 flex bg-background overflow-hidden">
       <ChatSidebar
         project={project}
         onSendMessage={handleSendMessage}
