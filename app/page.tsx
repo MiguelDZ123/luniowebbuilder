@@ -4,7 +4,7 @@ import RecentProjects from "./components/home/RecentProjects";
 
 export default function Home() {
   return (
-    <div className="min-h-screen font-mono bg-background relative overflow-x-hidden">
+    <div className="min-h-screen font-mono relative overflow-x-hidden">
       {/* Ambient background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-accent/5 blur-3xl rounded-full" />
@@ -25,9 +25,9 @@ export default function Home() {
 
       {/* Hero */}
       <main className="relative z-10 px-6 pt-20 pb-24">
-        <div className="max-w-3xl font-roboto font-bold mx-auto text-center mb-12">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl tracking-tight text-foreground leading-[1.05]">
-            Start <span className="gradient uppercase">Building</span> Today with Just a Prompt
+        <div className="max-w-5xl font-roboto font-bold mx-auto text-center mb-12">
+          <h1 className="text-5xl md:text-6xl lg:text-9xl tracking-tight text-foreground leading-[1.05]">
+            <span className="text-white">BUILD WEBSITES</span><br /> <span className="text-[#02e4fe]">IN SECONDS</span><br /><span className="text-[#606980]">NOT SPRINTS</span>
           </h1>
           <p className="mt-6 text-base md:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
             Describe your idea and let the power of AI make it a reality. Just type a prompt in the textbox below and just let the machine do the rest.

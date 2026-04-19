@@ -22,7 +22,7 @@ function stripCodeFences(text) {
   return t.trim();
 }
 
-export async function generateWebsite({ prompt, currentHtml, history }) {
+export async function generateWebsite({ prompt, currentHtml, history, }) {
   let fullPrompt = SYSTEM_GUIDELINES + "\n\n";
 
   if (currentHtml) {

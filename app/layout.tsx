@@ -37,7 +37,7 @@ export default function RootLayout({
       <head>
         <link rel="stylesheet" href="/global.css" />
       </head>
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col bg-[#090b10] text-white">
         <Providers>{children}</Providers>
       </body>
     </html>
