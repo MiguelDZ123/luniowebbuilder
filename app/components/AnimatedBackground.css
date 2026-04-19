@@ -1,0 +1,228 @@
+.animated-background {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  background: linear-gradient(135deg, oklch(0.08 0.02 270), oklch(0.1 0.015 200));
+}
+
+/* Blobs - Main animated shapes */
+.blob {
+  position: absolute;
+  filter: blur(40px);
+  opacity: 0.4;
+  mix-blend-mode: screen;
+}
+
+.blob-1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle at 30% 40%, rgba(2, 228, 254, 0.6), rgba(2, 228, 254, 0) 70%);
+  top: -10%;
+  left: -5%;
+  animation: float1 20s ease-in-out infinite;
+}
+
+.blob-2 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle at 40% 50%, rgba(147, 51, 234, 0.5), rgba(147, 51, 234, 0) 70%);
+  top: 20%;
+  right: -10%;
+  animation: float2 25s ease-in-out infinite;
+}
+
+.blob-3 {
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.4), rgba(59, 130, 246, 0) 70%);
+  bottom: -20%;
+  right: 10%;
+  animation: float3 30s ease-in-out infinite;
+}
+
+.blob-4 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle at 50% 50%, rgba(167, 139, 250, 0.45), rgba(167, 139, 250, 0) 70%);
+  bottom: 10%;
+  left: 5%;
+  animation: float4 22s ease-in-out infinite;
+}
+
+/* Floating orbs - Smaller accent elements */
+.floating-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(30px);
+  mix-blend-mode: color-dodge;
+}
+
+.orb-1 {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(2, 228, 254, 0.3), rgba(2, 228, 254, 0));
+  top: 15%;
+  left: 10%;
+  animation: float-orb1 15s ease-in-out infinite;
+}
+
+.orb-2 {
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.25), rgba(168, 85, 247, 0));
+  top: 60%;
+  right: 15%;
+  animation: float-orb2 18s ease-in-out infinite;
+}
+
+.orb-3 {
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.2), rgba(59, 130, 246, 0));
+  bottom: 20%;
+  left: 40%;
+  animation: float-orb3 20s ease-in-out infinite;
+}
+
+/* Gradient mesh background layer */
+.gradient-mesh {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse at 20% 30%, rgba(2, 228, 254, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(147, 51, 234, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Animations */
+@keyframes float1 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(30px, -50px) scale(1.05);
+  }
+  50% {
+    transform: translate(-20px, 50px) scale(0.95);
+  }
+  75% {
+    transform: translate(40px, 30px) scale(1.02);
+  }
+}
+
+@keyframes float2 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(-40px, 60px) scale(0.98);
+  }
+  66% {
+    transform: translate(50px, -40px) scale(1.03);
+  }
+}
+
+@keyframes float3 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(-60px, -30px) scale(1.04);
+  }
+  50% {
+    transform: translate(30px, 40px) scale(0.96);
+  }
+  75% {
+    transform: translate(-40px, 20px) scale(1.01);
+  }
+}
+
+@keyframes float4 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  35% {
+    transform: translate(50px, -60px) scale(0.97);
+  }
+  70% {
+    transform: translate(-30px, 50px) scale(1.03);
+  }
+}
+
+@keyframes float-orb1 {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(40px, 60px);
+  }
+}
+
+@keyframes float-orb2 {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-50px, -40px);
+  }
+}
+
+@keyframes float-orb3 {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(60px, -50px);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .blob {
+    filter: blur(30px);
+  }
+
+  .blob-1 {
+    width: 400px;
+    height: 400px;
+  }
+
+  .blob-2 {
+    width: 350px;
+    height: 350px;
+  }
+
+  .blob-3 {
+    width: 450px;
+    height: 450px;
+  }
+
+  .blob-4 {
+    width: 300px;
+    height: 300px;
+  }
+
+  .floating-orb {
+    filter: blur(20px);
+  }
+
+  .orb-1 {
+    width: 150px;
+    height: 150px;
+  }
+
+  .orb-2 {
+    width: 120px;
+    height: 120px;
+  }
+
+  .orb-3 {
+    width: 140px;
+    height: 140px;
+  }
+}

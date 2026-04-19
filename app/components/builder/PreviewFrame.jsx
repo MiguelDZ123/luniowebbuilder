@@ -61,15 +61,15 @@ export default function PreviewFrame({ html, isGenerating }) {
   };
 
   return (
-    <div className="flex-1 flex flex-col bg-muted/40 h-full min-w-0">
+    <div className="flex-1 flex flex-col bg-[#090b10] h-full min-w-0">
       {/* Toolbar */}
-      <div className="flex items-center justify-between px-5 py-3 border-b border-border bg-background/80 backdrop-blur-sm">
-        <div className="flex items-center gap-1 p-1 bg-muted rounded-lg">
+      <div className="flex items-center justify-between px-5 py-3 border-b border-[#ffffff12] bg-[#090b10]  backdrop-blur-sm">
+        <div className="flex items-center gap-1 p-1 bg-[#090b10] rounded-lg border border-[#ffffff12]">
           <button
             onClick={() => setView("preview")}
             className={cn(
               "px-3 py-1.5 text-xs font-medium rounded-md flex items-center gap-1.5 transition-all",
-              view === "preview" ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
+              view === "preview" ? "text-white bg-[#353535] shadow-sm" : "text-white"
             )}
           >
             <Eye className="h-3.5 w-3.5" />
@@ -79,7 +79,7 @@ export default function PreviewFrame({ html, isGenerating }) {
             onClick={() => setView("code")}
             className={cn(
               "px-3 py-1.5 text-xs font-medium rounded-md flex items-center gap-1.5 transition-all",
-              view === "code" ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
+              view === "code" ? "bg-[#353535] text-white shadow-sm" : "text-white"
             )}
           >
             <Code2 className="h-3.5 w-3.5" />
@@ -88,7 +88,7 @@ export default function PreviewFrame({ html, isGenerating }) {
         </div>
 
         {view === "preview" && (
-          <div className="flex items-center gap-1 p-1 bg-muted rounded-lg">
+          <div className="flex items-center gap-1 p-1  rounded-lg">
             {Object.entries(DEVICES).map(([key, { icon: Icon, label }]) => (
               <button
                 key={key}
@@ -96,7 +96,7 @@ export default function PreviewFrame({ html, isGenerating }) {
                 title={label}
                 className={cn(
                   "h-7 w-7 rounded-md flex items-center justify-center transition-all",
-                  device === key ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
+                  device === key ? " text-white border border-[#ffffff12] shadow-sm" : "text-white"
                 )}
               >
                 <Icon className="h-3.5 w-3.5" />
@@ -107,11 +107,10 @@ export default function PreviewFrame({ html, isGenerating }) {
 
         <div className="flex items-center gap-2">
           <Button
-            variant="ghost"
             size="sm"
             onClick={handleCopy}
             disabled={!html}
-            className="h-8 text-xs gap-1.5"
+            className="h-8 text-xs gap-1.5 border border-[#ffffff12]"
           >
             {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
             {copied ? "Copied" : "Copy"}
@@ -121,7 +120,7 @@ export default function PreviewFrame({ html, isGenerating }) {
             size="sm"
             onClick={handleOpen}
             disabled={!html}
-            className="h-8 text-xs gap-1.5"
+            className="h-8 text-xs gap-1.5 border border-[#ffffff12]"
           >
             <ExternalLink className="h-3.5 w-3.5" />
             Open
@@ -130,7 +129,7 @@ export default function PreviewFrame({ html, isGenerating }) {
       </div>
 
       {/* Content area */}
-      <div className="flex-1 overflow-hidden relative">
+      <div className="flex-1 overflow-hidden relative bg-[#1e1e1e]">
         {view === "preview" ? (
           <div className="h-full w-full flex items-start justify-center p-4 md:p-8 overflow-auto">
             <div
@@ -157,7 +156,7 @@ export default function PreviewFrame({ html, isGenerating }) {
         ) : (
           <div className="h-full overflow-auto">
             <pre className="font-mono text-xs leading-relaxed p-6 text-foreground/80 whitespace-pre-wrap break-all">
-              <Editor value={editedHtml || "// No code yet"} onChange={Edited} className="h-full" height="90vh" />
+              <Editor value={editedHtml || "// No code yet"} onChange={Edited} className="h-full" height="90vh" theme="vs-dark" language="html"/>
             </pre>
           </div>
         )}

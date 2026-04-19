@@ -86,7 +86,7 @@ export default function PromptInput() {
             key={s}
             onClick={() => setPrompt(s)}
             disabled={isStarting}
-            className="text-xs text-muted-foreground bg-[#0e1219]  hover:text-foreground border border-[#ffffff12] rounded-full px-3.5 py-1.5 hover:border-foreground/30 transition-all"
+            className="text-xs text-muted-foreground bg-[#0e1219]  hover:text-white border border-[#ffffff12] rounded-full px-3.5 py-1.5"
           >
             {s}
           </button>

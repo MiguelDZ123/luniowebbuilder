@@ -1,15 +1,12 @@
 import Link from "next/link";
 import PromptInput from "./components/home/PromptInput";
 import RecentProjects from "./components/home/RecentProjects";
+import AnimatedBackground from "./components/AnimatedBackground";
 
 export default function Home() {
   return (
     <div className="min-h-screen font-mono relative overflow-x-hidden">
-      {/* Ambient background */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-accent/5 blur-3xl rounded-full" />
-        <div className="absolute top-1/3 right-0 w-[400px] h-[400px] bg-accent/5 blur-3xl rounded-full" />
-      </div>
+      <AnimatedBackground />
 
       {/* Top bar */}
       <header className="relative z-10 px-6 py-5 flex items-center justify-between max-w-7xl mx-auto">
@@ -26,7 +23,7 @@ export default function Home() {
       {/* Hero */}
       <main className="relative z-10 px-6 pt-20 pb-24">
         <div className="max-w-5xl font-roboto font-bold mx-auto text-center mb-12">
-          <h1 className="text-5xl md:text-6xl lg:text-9xl tracking-tight text-foreground leading-[1.05]">
+          <h1 className="text-5xl md:text-6xl lg:text-8xl tracking-tight leading-[1.05]">
             <span className="text-white">BUILD WEBSITES</span><br /> <span className="text-[#02e4fe]">IN SECONDS</span><br /><span className="text-[#606980]">NOT SPRINTS</span>
           </h1>
           <p className="mt-6 text-base md:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
@@ -38,7 +35,7 @@ export default function Home() {
         <RecentProjects />
       </main>
 
-      <footer className="relative z-10 border-t border-border mt-10 py-6 px-6 text-xs text-muted-foreground text-center">
+      <footer className="relative z-10 border-t border-[#ffffff12] mt-10 py-6 px-6 text-xs text-muted-foreground text-center">
         Built with ❤️ by <Link href="https://www.luniostudios.com/" target="_blank" rel="noopener noreferrer" className="underline">LUNIO Studios</Link>. All rights reserved.
       </footer>
     </div>

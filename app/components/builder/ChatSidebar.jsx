@@ -37,21 +37,21 @@ export default function ChatSidebar({ project, onSendMessage, isGenerating }) {
   const messages = project?.messages || [];
 
   return (
-    <aside className="w-full md:w-[380px] lg:w-[420px] flex-shrink-0 border-r border-border bg-sidebar flex flex-col h-full">
+    <aside className="w-full md:w-95 lg:w-105 shrink-0 border-r text-white border-[#ffffff12] bg-[#090b10] flex flex-col h-full">
       {/* Header */}
-      <div className="px-5 py-4 border-b border-border flex items-center gap-3">
+      <div className="px-5 py-4 border-b border-[#ffffff12] flex items-center gap-3">
         <Link
           href="/"
-          className="h-8 w-8 rounded-lg hover:bg-muted flex items-center justify-center transition-colors"
+          className="h-8 w-8 rounded-lg flex items-center justify-center transition-colors"
         >
           <ArrowLeft className="h-4 w-4" />
         </Link>
 
         <div className="min-w-0 flex-1">
-          <div className="text-xs text-muted-foreground font-medium uppercase tracking-wider">
+          <div className="text-xs text-white font-medium uppercase tracking-wider">
             Project
           </div>
-          <div className="font-serif text-base truncate text-foreground">
+          <div className="font-serif text-white truncate">
             {project?.title || "Untitled"}
           </div>
         </div>
@@ -83,8 +83,8 @@ export default function ChatSidebar({ project, onSendMessage, isGenerating }) {
       </div>
 
       {/* Composer */}
-      <div className="p-4 border-t border-border bg-sidebar">
-        <div className="relative rounded-2xl border border-border bg-card shadow-sm focus-within:border-foreground/30 focus-within:shadow transition-all">
+      <div className="p-4 border-t bg-[#090b10] border border-[#ffffff12]">
+        <div className="relative rounded-2xl border border-[#ffffff12] bg-[#090b10] shadow-sm focus-within:border-foreground/30 focus-within:shadow transition-all">
           <Textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
@@ -92,7 +92,7 @@ export default function ChatSidebar({ project, onSendMessage, isGenerating }) {
             placeholder="Describe a change…"
             rows={2}
             disabled={isGenerating}
-            className="resize-none border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 px-4 pt-3 pb-10 text-sm min-h-[84px]"
+            className="resize-none border-0 border-[#ffffff12]  focus-visible:ring-0 focus-visible:ring-offset-0 px-4 pt-3 pb-10 text-sm min-h-21"
           />
 
           <div className="absolute bottom-2 right-2">

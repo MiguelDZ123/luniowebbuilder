@@ -40,7 +40,7 @@ export default function RecentProjects() {
   return (
     <div className="w-full max-w-5xl mx-auto mt-20 px-6">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="font-serif text-2xl text-foreground">Community Projects</h2>
+        <h2 className="font-serif text-2xl text-white">Community Projects</h2>
         <span className="text-xs text-muted-foreground uppercase tracking-wider">
           {projects.length} {projects.length === 1 ? "site" : "sites"}
         </span>
@@ -50,15 +50,15 @@ export default function RecentProjects() {
           <Link
             key={p.id}
             href={`/builder?id=${p.id}`}
-            className="group relative rounded-2xl border border-border bg-card p-5 hover:border-foreground/30 hover:shadow-sm transition-all"
+            className="group relative bg-[#0e1219] text-white rounded-2xl border border-transparent p-5 hover:border-[#ffffff12] hover:shadow-sm transition-all"
           >
             <div className="flex items-start justify-between gap-3">
               <div className="h-9 w-9 rounded-lg bg-muted border border-border flex items-center justify-center">
                 <FileText className="h-4 w-4 text-muted-foreground" />
               </div>
-              <ArrowUpRight className="h-4 w-4 text-muted-foreground group-hover:text-foreground transition-colors" />
+              <ArrowUpRight className="h-4 w-4 text-muted-foreground" />
             </div>
-            <h3 className="font-serif text-lg mt-4 text-foreground truncate">
+            <h3 className="font-serif text-lg mt-4 truncate">
               {p.title || "Untitled"}
             </h3>
             <p className="text-sm text-muted-foreground mt-1 line-clamp-2">
