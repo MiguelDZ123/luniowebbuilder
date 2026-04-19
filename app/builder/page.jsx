@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, Suspense } from "react";
 import { useSearchParams, useRouter } from 'next/navigation'
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "../../utils/supabase";
@@ -9,7 +9,7 @@ import ChatSidebar from "././../components/builder/ChatSidebar";
 import PreviewFrame from "./../components/builder/PreviewFrame";
 import { toast } from "sonner";
 
-export default function Builder() {
+function Builder() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const queryClient = useQueryClient();
@@ -146,5 +146,17 @@ export default function Builder() {
       />
       <PreviewFrame html={project.html} isGenerating={isGenerating} />
     </div>
+  );
+}
+
+export default function BuilderPage() {
+  return (
+    <Suspense fallback={
+      <div className="fixed inset-0 flex items-center justify-center bg-background">
+        <div className="w-7 h-7 border-2 border-border border-t-foreground rounded-full animate-spin" />
+      </div>
+    }>
+      <Builder />
+    </Suspense>
   );
 }
