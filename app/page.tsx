@@ -2,6 +2,8 @@ import Link from "next/link";
 import PromptInput from "./components/home/PromptInput";
 import RecentProjects from "./components/home/RecentProjects";
 import AnimatedBackground from "./components/AnimatedBackground";
+import Header from "./components/home/Header";
+
 
 export default function Home() {
   return (
@@ -9,16 +11,7 @@ export default function Home() {
       <AnimatedBackground />
 
       {/* Top bar */}
-      <header className="relative z-10 px-6 py-5 flex items-center justify-between max-w-7xl mx-auto">
-        <div className="flex font-roboto font-medium items-center gap-2">
-          <span className="text-xl">LUNIO AI</span>
-        </div>
-        <nav className="text-sm text-muted-foreground hidden sm:flex items-center gap-6">
-          <span className="hover:text-foreground transition-colors cursor-default">Community</span>
-          <span className="hover:text-foreground transition-colors cursor-default">Docs</span>
-          <span className="hover:text-foreground transition-colors cursor-default">Pricing</span>
-        </nav>
-      </header>
+      <Header />
 
       {/* Hero */}
       <main className="relative z-10 px-6 pt-20 pb-24">
@@ -32,7 +25,6 @@ export default function Home() {
         </div>
 
         <PromptInput />
-        <RecentProjects />
       </main>
 
       <footer className="relative z-10 border-t border-[#ffffff12] mt-10 py-6 px-6 text-xs text-muted-foreground text-center">
